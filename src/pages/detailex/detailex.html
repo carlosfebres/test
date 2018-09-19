@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{config.detail.headerTitle}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-segment [(ngModel)]="show">
+    <ion-segment-button value="1">Description</ion-segment-button>
+    <ion-segment-button value="0">Detail</ion-segment-button>
+  </ion-segment>
+
+  <ion-content padding [ngSwitch]="show">
+    <ion-list *ngSwitchCase="1">
+      <ion-item *ngFor="let campo of config.detail.listDetail | jsonIterate">
+        <ion-label stacked>{{campo.value}}</ion-label>
+        <ion-input type="text" [value]="item[campo.key]" readonly></ion-input>
+      </ion-item>
+    </ion-list>
+    <div *ngSwitchCase="0">
+      <page-busqueda-complex></page-busqueda-complex>
+    </div>
+  </ion-content>
+
+</ion-content>
